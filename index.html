@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>St Gandalfs — Open Biomedical Engineering</title>
+  <meta name="description" content="St Gandalfs develops and shares open biomedical engineering technologies, tools and hardware.">
+
+  <style>
+    /* =========================================================
+       ST GANDALFS — OPEN BIOMEDICAL ENGINEERING
+       Single-file GitHub Pages website
+       ========================================================= */
+
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+    :root {
+      --paper: #f4f0e7;
+      --paper-dark: #e9e3d6;
+      --ink: #171916;
+      --muted: #686a62;
+      --green: #214c3d;
+      --green-dark: #16372d;
+      --red: #9b3f32;
+      --line: #c9c2b5;
+      --white: #fffdf8;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ---------- NAVIGATION ---------- */
+
+    nav {
+      width: 100%;
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 240, 231, 0.94);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: auto;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .wordmark {
+      font-family: "Playfair Display", serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      font-size: 0.78rem;
+      font-family: "DM Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .github-button {
+      background: var(--green);
+      color: white !important;
+      padding: 9px 14px;
+      border-radius: 2px;
+    }
+
+    /* ---------- GENERAL ---------- */
+
+    .container {
+      max-width: var(--max);
+      margin: auto;
+      padding-left: 28px;
+      padding-right: 28px;
+    }
+
+    .eyebrow {
+      font-family: "DM Mono", monospace;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.13em;
+      color: var(--red);
+      font-weight: 500;
+    }
+
+    .section {
+      padding: 110px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 55px;
+    }
+
+    .section-heading h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      margin-top: 12px;
+    }
+
+    .section-heading p {
+      margin-top: 22px;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      width: 100%;
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(4.5rem, 12vw, 10.5rem);
+      line-height: 0.84;
+      letter-spacing: -0.065em;
+      max-width: 1000px;
+      margin: 18px 0 34px;
+    }
+
+    .hero-subtitle {
+      font-family: "DM Mono", monospace;
+      text-transform: uppercase;
+      font-size: clamp(0.9rem, 2vw, 1.25rem);
+      letter-spacing: 0.11em;
+      color: var(--green);
+      margin-bottom: 28px;
+    }
+
+    .hero-description {
+      max-width: 640px;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: #44473f;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 38px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 20px;
+      font-family: "DM Mono", monospace;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      border: 1px solid var(--green);
+      transition: all 0.2s;
+    }
+
+    .button.primary {
+      background: var(--green);
+      color: white;
+    }
+
+    .button.primary:hover {
+      background: var(--green-dark);
+    }
+
+    .button.secondary:hover {
+      background: var(--green);
+      color: white;
+    }
+
+    .hero-stamp {
+      position: absolute;
+      right: 4%;
+      bottom: 12%;
+      width: 155px;
+      height: 155px;
+      border: 1px solid var(--red);
+      border-radius: 50%;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: "DM Mono", monospace;
+      font-size: 0.66rem;
+      line-height: 1.5;
+      text-transform: uppercase;
+      transform: rotate(10deg);
+    }
+
+    /* ---------- PROJECTS ---------- */
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .project {
+      border: 1px solid var(--line);
+      background: var(--white);
+      padding: 34px;
+      min-height: 450px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .project:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(23, 25, 22, 0.08);
+    }
+
+    .project-number {
+      font-family: "DM Mono", monospace;
+      color: var(--red);
+      font-size: 0.72rem;
+      margin-bottom: 55px;
+    }
+
+    .project h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.3rem;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    .project-type {
+      font-family: "DM Mono", monospace;
+      font-size: 0.68rem;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 22px;
+    }
+
+    .project-description {
+      color: var(--muted);
+      max-width: 470px;
+    }
+
+    .project-bottom {
+      margin-top: auto;
+      padding-top: 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      padding: 5px 8px;
+      font-family: "DM Mono", monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+    }
+
+    .project-link {
+      color: var(--green);
+      font-family: "DM Mono", monospace;
+      font-size: 0.72rem;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+
+    .project-link:hover {
+      color: var(--red);
+    }
+
+    /* ---------- OPENNESS ---------- */
+
+    .open-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .open-statement {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.3rem, 4vw, 4rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .open-statement em {
+      color: var(--green);
+      font-style: normal;
+    }
+
+    .open-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .open-item {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .open-item strong {
+      font-family: "DM Mono", monospace;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .open-item span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    /* ---------- COMMERCIAL ---------- */
+
+    .commercial {
+      background: var(--green);
+      color: #f4f0e7;
+    }
+
+    .commercial .eyebrow {
+      color: #e3a095;
+    }
+
+    .commercial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .commercial h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .commercial p {
+      color: #d4dbd4;
+      font-size: 1.05rem;
+      max-width: 560px;
+    }
+
+    .commercial p + p {
+      margin-top: 18px;
+    }
+
+    .commercial .button {
+      border-color: #d4dbd4;
+      color: #f4f0e7;
+      margin-top: 28px;
+    }
+
+    .commercial .button:hover {
+      background: #f4f0e7;
+      color: var(--green);
+    }
+
+    /* ---------- ABOUT ---------- */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 80px;
+    }
+
+    .about-title {
+      font-family: "Playfair Display", serif;
+      font-size: 3rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .about-copy {
+      font-size: 1.1rem;
+      max-width: 680px;
+      color: #474a43;
+    }
+
+    .about-copy p + p {
+      margin-top: 22px;
+    }
+
+    .origin {
+      margin-top: 35px;
+      padding: 22px;
+      background: var(--paper-dark);
+      border-left: 3px solid var(--red);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      padding: 55px 0;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      align-items: end;
+    }
+
+    .footer-brand {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+    }
+
+    .footer-small {
+      font-family: "DM Mono", monospace;
+      font-size: 0.66rem;
+      color: #999b94;
+      margin-top: 7px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 25px;
+      font-family: "DM Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+    }
+
+    .footer-links a:hover {
+      color: #e3a095;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 760px) {
+
+      .nav-inner {
+        padding: 15px 18px;
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 0.61rem;
+      }
+
+      .nav-links a:not(.github-button) {
+        display: none;
+      }
+
+      .container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .hero {
+        min-height: 82vh;
+      }
+
+      .hero-stamp {
+        display: none;
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .projects,
+      .open-grid,
+      .commercial-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .project {
+        min-height: 400px;
+        padding: 26px;
+      }
+
+      .project-number {
+        margin-bottom: 45px;
+      }
+
+      .commercial-grid {
+        gap: 45px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       NAVIGATION
+       ======================================================= -->
+
+  <nav>
+    <div class="nav-inner">
+
+      <a href="#" class="wordmark">St Gandalfs</a>
+
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#open">Open Science</a>
+        <a href="#about">About</a>
+
+        <a
+          href="https://github.com/"
+          class="github-button"
+          target="_blank"
+          rel="noopener">
+          GitHub ↗
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- =======================================================
+       HERO
+       ======================================================= -->
+
+  <header class="hero">
+
+    <div class="container hero-inner">
+
+      <div class="eyebrow">
+        An open engineering initiative
+      </div>
+
+      <h1>St Gandalfs</h1>
+
+      <div class="hero-subtitle">
+        Open Biomedical Engineering
+      </div>
+
+      <p class="hero-description">
+        We develop and share biomedical engineering technologies
+        that people can understand, reproduce, build upon and put
+        to work.
+      </p>
+
+      <div class="hero-actions">
+
+        <a href="#projects" class="button primary">
+          Explore projects
+        </a>
+
+        <a
+          href="https://github.com/"
+          class="button secondary"
+          target="_blank"
+          rel="noopener">
+          Visit GitHub
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="hero-stamp">
+      Open<br>
+      Biomedical<br>
+      Engineering<br>
+      Est. 2026
+    </div>
+
+  </header>
+
+
+  <!-- =======================================================
+       PROJECTS
+       ======================================================= -->
+
+  <section class="section" id="projects">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div class="eyebrow">
+          Current projects
+        </div>
+
+        <h2>
+          Things worth<br>
+          building.
+        </h2>
+
+        <p>
+          Practical hardware and software for biomedical
+          engineering, released openly wherever possible.
+        </p>
+
+      </div>
+
+
+      <div class="projects">
+
+        <!-- PROJECT 01 -->
+
+        <article class="project">
+
+          <div class="project-number">
+            01 / OPEN HARDWARE
+          </div>
+
+          <h3>
+            ECG Teaching Board
+          </h3>
+
+          <div class="project-type">
+            Electrophysiology · Education
+          </div>
+
+          <p class="project-description">
+            An educational bio-signal acquisition board designed
+            to make electrophysiology easier to teach, demonstrate
+            and explore. The design supports teaching around ECG,
+            EMG and other bio-signals.
+          </p>
+
+          <div class="project-bottom">
+
+            <div class="tags">
+              <span class="tag">HARDWARE</span>
+              <span class="tag">KICAD</span>
+              <span class="tag">CERN-OHL-W-2.0</span>
+            </div>
+
+            <a
+              href="https://github.com/emptydave/ecg_teaching_board"
+              class="project-link"
+              target="_blank"
+              rel="noopener">
+              View project →
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <!-- PROJECT 02 -->
+
+        <article class="project">
+
+          <div class="project-number">
+            02 / OPEN SOFTWARE
+          </div>
+
+          <h3>
+            Local Tracking Software
+          </h3>
+
+          <div class="project-type">
+            Movement · Computer Vision · Biofeedback
+          </div>
+
+          <p class="project-description">
+            A cross-platform body-tracking and capture suite for
+            movement research. It supports RGB webcams, Azure
+            Kinect and ZED 2i, with protocol-driven sessions,
+            skeletal tracking, recording, analysis and biofeedback.
+          </p>
+
+          <div class="project-bottom">
+
+            <div class="tags">
+              <span class="tag">SOFTWARE</span>
+              <span class="tag">QT</span>
+              <span class="tag">PYTHON / C++</span>
+              <span class="tag">CC BY-NC-SA</span>
+            </div>
+
+            <a
+              href="https://github.com/JackClarkeAE/local-tracking-software"
+              class="project-link"
+              target="_blank"
+              rel="noopener">
+              View project →
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       OPENNESS
+       ======================================================= -->
+
+  <section class="section" id="open">
+
+    <div class="container">
+
+      <div class="open-grid">
+
+        <div>
+
+          <div class="eyebrow">
+            The principle
+          </div>
+
+          <div class="open-statement">
+            Biomedical engineering should be
+            <em>understandable, reproducible
+            and reusable.</em>
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <div class="open-list">
+
+            <div class="open-item">
+              <strong>Designs</strong>
+              <span>CAD, schematics & hardware</span>
+            </div>
+
+            <div class="open-item">
+              <strong>Code</strong>
+              <span>Software & analysis tools</span>
+            </div>
+
+            <div class="open-item">
+              <strong>Methods</strong>
+              <span>Protocols & documentation</span>
+            </div>
+
+            <div class="open-item">
+              <strong>Data</strong>
+              <span>Datasets & examples where appropriate</span>
+            </div>
+
+            <div class="open-item">
+              <strong>Build</strong>
+              <span>Instructions for making and using things</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       COMMERCIAL / SOCIAL ENTERPRISE
+       ======================================================= -->
+
+  <section class="section commercial">
+
+    <div class="container">
+
+      <div class="commercial-grid">
+
+        <div>
+
+          <div class="eyebrow">
+            Open doesn't mean free
+          </div>
+
+          <h2>
+            Build it.<br>
+            Share it.<br>
+            Keep going.
+          </h2>
+
+        </div>
+
+
+        <div>
+
+          <p>
+            We release designs, software and documentation openly
+            where possible. But open technology still needs people,
+            materials, tools and time.
+          </p>
+
+          <p>
+            We can build, supply and support physical products and
+            services alongside our open projects. Revenue helps
+            support the development, maintenance and release of
+            more biomedical engineering tools.
+          </p>
+
+          <a href="#contact" class="button">
+            Work with us →
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       ABOUT
+       ======================================================= -->
+
+  <section class="section" id="about">
+
+    <div class="container">
+
+      <div class="about-grid">
+
+        <div>
+
+          <div class="eyebrow">
+            About St Gandalfs
+          </div>
+
+          <div class="about-title">
+            An engineering
+            workshop for
+            biomedical
+            technology.
+          </div>
+
+        </div>
+
+
+        <div class="about-copy">
+
+          <p>
+            St Gandalfs is an open biomedical engineering initiative
+            originating from Biomechanics+ at the University of York.
+          </p>
+
+          <p>
+            Rather than keeping useful engineering tools inside
+            individual research projects, we aim to turn them into
+            things that others can inspect, reproduce, adapt,
+            teach with and improve.
+          </p>
+
+          <p>
+            The projects span biomedical engineering rather than a
+            single research discipline — from electronics and
+            electrophysiology to movement tracking, software,
+            sensing and beyond.
+          </p>
+
+          <div class="origin">
+            <strong>Part of Biomechanics+ · University of York</strong><br>
+            St Gandalfs is a project-focused open engineering
+            initiative. Research outputs and academic information
+            remain available through the relevant University and
+            research-group websites.
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
+
+  <footer id="contact">
+
+    <div class="container footer-inner">
+
+      <div>
+
+        <div class="footer-brand">
+          St Gandalfs
+        </div>
+
+        <div class="footer-small">
+          Open Biomedical Engineering
+        </div>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <a href="#projects">
+          Projects
+        </a>
+
+        <a href="#open">
+          Open Science
+        </a>
+
+        <a href="#about">
+          About
+        </a>
+
+        <a
+          href="https://github.com/"
+          target="_blank"
+          rel="noopener">
+          GitHub
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+</body>
+</html>
